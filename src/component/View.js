@@ -6,8 +6,8 @@ import Shimmer from './Shimmer';
 import Footer from './Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from '../redux/Cartslice';
-import { toast } from 'react-toastify'; // Import toast
-import 'react-toastify/ReactToastify.css'; // Import toast CSS
+import { toast } from 'react-toastify'; 
+import 'react-toastify/ReactToastify.css';  
 
 const View = () => {
   const [viewProduct, setViewProduct] = useState({});

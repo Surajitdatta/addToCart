@@ -11,7 +11,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/ReactToastify.css';
 import Login from './authentication/Login';
 import Pagination from './component/Pagination';
-// import { Shimmer } from 'react-shimmer';
 import Shimmer from './component/Shimmer';
 
 const Food = React.lazy(() => import('./food/Food'));
@@ -32,7 +31,7 @@ const App = () => {
               <Route path="/api/login" element={<Login />} />
               <Route path="/api/p" element={<Pagination />} />
               
-              {/* Wrap Food component with Suspense */}
+              
               <Route 
                 path="/api/food" 
                 element={

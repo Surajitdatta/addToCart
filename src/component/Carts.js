@@ -19,7 +19,7 @@ const Carts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Calculate total price based on item price and quantity
+ 
   const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   console.log(cart.length)
   const openModal = (item) => {

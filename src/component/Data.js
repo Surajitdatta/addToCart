@@ -1,6 +1,6 @@
 // Data.js
 import React, { useState, useEffect } from 'react';
-import useData from './useData';  // Import the modified hook
+import useData from './useData'; 
 import './Data.css';  
 import Search from './Search';
 import Shimmer from './Shimmer';
@@ -17,7 +17,7 @@ const Data = () => {
   const [products, setProducts] = useState([]);
   const [filterSearch, setFilterSearch] = useState([]);
 
-  // Pass the URL dynamically here
+  
   const { datas } = useData('https://fakestoreapi.com/products');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -76,7 +76,7 @@ const Data = () => {
                   Rating: {v?.rating?.rate} ({v?.rating?.count} reviews)
                 </p>
                 
-                {/* Add Buttons */}
+             
                 <div className="button-container">
                   <button className="view-button" onClick={() => view(v)}>View Product</button>
                   <button className="cart-button" onClick={() => addToCart(v)}>Add to Cart</button>

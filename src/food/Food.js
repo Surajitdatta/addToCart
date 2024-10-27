@@ -7,13 +7,13 @@ import Shimmer from '../component/Shimmer';
 import Modal from 'react-modal';
 
 const Food = () => {
-    const [foodApi, setFoodApi] = useState({ categories: [] }); // Initialize with an object to avoid errors
+    const [foodApi, setFoodApi] = useState({ categories: [] }); 
     const [filteredFood, setFilteredFood] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false); 
     const [selectedFood, setSelectedFood] = useState(null); 
-    const url = "https://www.themealdb.com/api/json/v1/1/categories.php"; // This is the correct URL for food categories
-    const { datas } = useData(url); // Use the correct URL for food categories
+    const url = "https://www.themealdb.com/api/json/v1/1/categories.php"; 
+    const { datas } = useData(url); 
 
     const foodSearchText = (val) => {
         const filtered = foodApi.categories.filter(item =>
@@ -27,7 +27,7 @@ const Food = () => {
             setFoodApi(datas);
             setLoading(false);
         } else {
-            setLoading(false); // Ensure loading is false if no data is returned
+            setLoading(false); 
         }
     }, [datas]);
 
