@@ -11,7 +11,7 @@ const Pagination = ({viewFunction}) => {
   const [api, setApi] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(2);
-  const { datas } = useData();
+  const { datas } = useData("https://fakestoreapi.com/products");
   const dispatch = useDispatch();
   const navigate = useNavigate()
 

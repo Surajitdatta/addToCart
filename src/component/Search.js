@@ -61,22 +61,22 @@ const Search = ({ data, priceData, foodSearchText, condition }) => {
                         .then(response => response.json())
                         .then(data => {
                             if (data.results && data.results.length > 0) {
-                                const state = data.results[0].components.state || "State not found";
+                                const state = data.results[0].components.state || "Location not found";
                                 setLocation(state);
-                                toast.success(`Location found: ${state}`);
+                                // toast.success(`Location found: ${state}`);
                             } else {
-                                setLocation("Location not found");
-                                toast.error("Location not found");
+                                // setLocation("Location not found");
+                                // toast.error("Location not found");
                             }
                         })
                         .catch(() => {
-                            setLocation("Error fetching location");
-                            toast.error("Error fetching location");
+                            // setLocation("Error fetching location");
+                            // toast.error("Error fetching location");
                         });
                 },
                 () => {
-                    setLocation("Location access denied");
-                    toast.error("Location access denied");
+                    // setLocation("Location access denied");
+                    // toast.error("Location access denied");
                 }
             );
         } else {

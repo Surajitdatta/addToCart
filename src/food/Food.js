@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useFood from './useFood';
+import useData from '../component/useData';
 import './Food.css'; 
 import Footer from '../component/Footer';
 import Search from '../component/Search';
@@ -7,13 +7,13 @@ import Shimmer from '../component/Shimmer';
 import Modal from 'react-modal';
 
 const Food = () => {
-    const [foodApi, setFoodApi] = useState([]);
+    const [foodApi, setFoodApi] = useState({ categories: [] }); // Initialize with an object to avoid errors
     const [filteredFood, setFilteredFood] = useState([]); 
     const [loading, setLoading] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false); // Modal open state
-    const [selectedFood, setSelectedFood] = useState(null); // State to hold selected food details
-    const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
-    const { food } = useFood(url);
+    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [selectedFood, setSelectedFood] = useState(null); 
+    const url = "https://www.themealdb.com/api/json/v1/1/categories.php"; // This is the correct URL for food categories
+    const { datas } = useData(url); // Use the correct URL for food categories
 
     const foodSearchText = (val) => {
         const filtered = foodApi.categories.filter(item =>
@@ -23,24 +23,26 @@ const Food = () => {
     };
 
     useEffect(() => {
-        if (food) {
-            setFoodApi(food);
+        if (datas) {
+            setFoodApi(datas);
             setLoading(false);
+        } else {
+            setLoading(false); // Ensure loading is false if no data is returned
         }
-    }, [food]);
+    }, [datas]);
 
     const openModal = (category) => {
-        setSelectedFood(category); // Set the selected food for details
-        setIsModalOpen(true); // Open modal
+        setSelectedFood(category); 
+        setIsModalOpen(true); 
     };
 
     const closeModal = () => {
-        setIsModalOpen(false); // Close modal
-        setSelectedFood(null); // Reset selected food
+        setIsModalOpen(false); 
+        setSelectedFood(null); 
     };
 
     if (loading) {
-        return <Shimmer />; // Show shimmer while loading
+        return <Shimmer />; 
     }
 
     const displayFood = filteredFood.length > 0 ? filteredFood : foodApi.categories;

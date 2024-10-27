@@ -16,7 +16,7 @@ const View = () => {
   const navigate = useNavigate();
   const { v } = location.state || {};
   const [quantity, setQuantity] = useState(1); 
-  const { datas } = useData();
+  const { datas } = useData("https://fakestoreapi.com/products");
   const dispatch = useDispatch();
 
   useEffect(() => {

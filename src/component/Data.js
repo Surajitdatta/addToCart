@@ -1,6 +1,6 @@
 // Data.js
 import React, { useState, useEffect } from 'react';
-import useData from "./useData";
+import useData from './useData';  // Import the modified hook
 import './Data.css';  
 import Search from './Search';
 import Shimmer from './Shimmer';
@@ -16,7 +16,9 @@ const Data = () => {
   const [status, setStatus] = useState(navigator.onLine);
   const [products, setProducts] = useState([]);
   const [filterSearch, setFilterSearch] = useState([]);
-  const { datas } = useData("https://fakestoreapi.com/products'");
+
+  // Pass the URL dynamically here
+  const { datas } = useData('https://fakestoreapi.com/products');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -33,7 +35,7 @@ const Data = () => {
   };
 
   const getPrice = (p) => {
-    const arr = p.split("-");
+    const arr = p.split('-');
     const filtered = filterSearch.filter((v) =>
       v.price >= +arr[0] && v.price <= +arr[1]
     );
@@ -41,36 +43,38 @@ const Data = () => {
   };
 
   const view = (v) => {
-    navigate("/api/view", { state: { v } });
+    navigate('/api/view', { state: { v } });
   };
 
   // Add to cart function
   const addToCart = (cartItem) => {
-    const login = localStorage.getItem("token");
+    const login = localStorage.getItem('token');
 
     if (!login) {
-      navigate("/api/login");
+      navigate('/api/login');
     } else {
       dispatch(addItem(cartItem));
-      toast.success("Cart has been added"); 
+      toast.success('Cart has been added');
     }
   };
 
   return status ? (
     <>
-      <Profile/>
+      <Profile />
       <Search data={getSearch} priceData={getPrice} />
       <div className="container">
         <div className="product-grid">
-          {products.length > 0 ? products.map((v) => {
-            return (
+          {products.length > 0 ? (
+            products.map((v) => (
               <div className="product-card" key={v.id}>
                 <img src={v?.image} alt={v?.title} className="product-image" />
                 <h3 className="product-title">{v?.title}</h3>
                 <p className="product-category">{v?.category}</p>
                 <p className="product-description">{v?.description}</p>
                 <p className="product-price">${v?.price}</p>
-                <p className="product-rating">Rating: {v?.rating?.rate} ({v?.rating?.count} reviews)</p>
+                <p className="product-rating">
+                  Rating: {v?.rating?.rate} ({v?.rating?.count} reviews)
+                </p>
                 
                 {/* Add Buttons */}
                 <div className="button-container">
@@ -78,13 +82,17 @@ const Data = () => {
                   <button className="cart-button" onClick={() => addToCart(v)}>Add to Cart</button>
                 </div>
               </div>
-            );
-          }) : <Shimmer />}
+            ))
+          ) : (
+            <Shimmer />
+          )}
         </div>
       </div>
       <Footer />
     </>
-  ) : <Offline />;
+  ) : (
+    <Offline />
+  );
 };
 
 export default Data;

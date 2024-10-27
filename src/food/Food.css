@@ -65,8 +65,8 @@
 }
 
 /* Styling for food buttons */
-.food-buttons a {
-    background-color: #ff7b54;
+.food-button {
+    background-color: #007bff; /* Default color */
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
@@ -75,34 +75,21 @@
     text-decoration: none; /* Remove underline for links */
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 120px;
-    text-align: center; /* Center text in buttons */
+    width: fit-content;
+    text-align: center;
 }
 
 /* Hover effect for food buttons */
-.food-buttons a:hover {
-    background-color: #ff5722;
-}
-/* Existing styles for food buttons */
-.food-button {
-    padding: 10px 15px;
-    background-color: #007bff; /* Customize as needed */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.food-button.add-to-cart {
-    background-color: #28a745; /* Different color for add to cart */
-}
-
 .food-button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
-.food-button.add-to-cart:hover {
+/* Specific styling for add-to-cart button */
+.add-to-cart {
+    background-color: #28a745; /* Different color for add to cart */
+}
+
+.add-to-cart:hover {
     background-color: #218838; /* Darker green on hover */
 }
 
@@ -112,9 +99,11 @@
     background: white;
     border-radius: 8px;
     width: 80%;
-    max-width: 600px;
+    height: 80vh;
+    max-width: 600px; /* Max width for larger screens */
+    overflow-y: auto;
     margin: auto;
-    position: relative; /* To position the close button */
+    position: relative;
 }
 
 .food-modal-overlay {
@@ -127,6 +116,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .modal-title {
@@ -135,7 +125,7 @@
 }
 
 .modal-img {
-    width: 100%;
+    width: 80%; /* Smaller width for laptops */
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -147,27 +137,46 @@
 
 .modal-close-button {
     padding: 10px 15px;
-    background-color: #007bff; /* Customize as needed */
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-close-button:hover {
+    background-color: #0056b3;
+}
+
+@media (min-width: 768px) {
+    .food-modal {
+        width: 60%; /* Reduce width for larger screens */
+        height: 70vh; /* Adjust height if necessary */
+    }
+
+    .modal-img {
+        width: 70%; /* Smaller width for the image on larger screens */
+    }
 }
 
 
 /* Media Query for smaller screens */
 @media (max-width: 600px) {
     .food-buttons {
-        display: block;
+        flex-direction: column;
+        gap: 10px; 
     }
 
-    .food-buttons a {
-        display: block;
-        width: 100%; /* Full width for each button */
-        margin-bottom: 12px;
+    .food-button {
+        width: 80%; 
+    }
+    .food-modal {
+        width: 90%; /* Wider for smaller screens */
+        height: 80vh; /* Maintain height for smaller screens */
     }
 
-    .food-buttons a:last-child {
-        margin-bottom: 0; /* Remove margin for the last button */
+    .modal-img {
+        width: 100%; /* Full width for the image on smaller screens */
     }
 }
